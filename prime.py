@@ -1,32 +1,20 @@
 import timeit
 import math
 
+
 def disasterCode():
-    primes = []
-    
-    for i in range (2,2500):
-        isprime = True
-        for j in range (2,math.ceil(math.sqrt(i))):
-            if i%j ==0:
-                isprime = False
-                break
-        if isprime:
-            primes.append(i)
-
-
+    spf = [i for i in range(2500)]
     for i in range(2,2500):
-        totest = i
-        primeslist = []
-        for j in primes:
-            if totest<j:
-                break
-            if totest%j==0:
-                primeslist.append(j)
-                while totest%j==0:
-                    totest = totest/j
+        primes = []
+        if spf[i] == i:
+            for j in range(i*i, 2500, i):
+                spf[j] = i
+
+        num = i
+        while(num>1):
+            primes.append(spf[num])
+            num = num // spf[num]
         
-
-
 
 
 
