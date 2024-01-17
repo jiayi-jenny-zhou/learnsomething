@@ -2,12 +2,21 @@ def max_area(height):
     max_area = 0
     n = len(height)
 
-    for i in range(n):
-        for j in range(i + 1, n):
-            h1 = height[i]
-            h2 = height[j]
-            width = j - i
-            current_area = min(h1, h2) * width
-            max_area = max(max_area, current_area)
+    hsorted = []
+    for i in range(0,n):
+        hsorted.append((height[i],i))
+    hsorted.sort()
+
+    begin = 0
+    end = n-1
+    for h in hsorted:
+        while(height[begin] < h[0]):
+            begin = begin+1
+        while(height[end]<h[0]):
+            end = end-1
+
+        area = h[0]*max(end-h[1], h[1]-begin)
+        if area>max_area:
+            max_area = area
 
     return max_area
